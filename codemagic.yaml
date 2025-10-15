@@ -1,0 +1,25 @@
+workflows:
+  build_ios:
+    name: Build FoodTruckSimple
+    max_build_duration: 60
+    environment:
+      vars:
+        APP_SCHEME: FoodTruckSimple
+        PROJECT_PATH: FoodTruck.xcodeproj
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Build iOS IPA
+        script: |
+          xcodebuild -project "$PROJECT_PATH" \
+                     -scheme "$APP_SCHEME" \
+                     -sdk iphoneos \
+                     -configuration Release \
+                     -archivePath build/$APP_SCHEME.xcarchive \
+                     clean archive
+          xcodebuild -exportArchive \
+                     -archivePath build/$APP_SCHEME.xcarchive \
+                     -exportOptionsPlist ExportOptions.plist \
+                     -exportPath build
+    artifacts:
+      - build/*.ipa
