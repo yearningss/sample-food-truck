@@ -12,7 +12,6 @@ workflows:
     scripts:
       - name: Build IPA
         script: |
-          # Архивируем проект
           xcodebuild -project "$PROJECT_PATH" \
                      -scheme "$APP_SCHEME" \
                      -sdk iphoneos \
@@ -20,7 +19,6 @@ workflows:
                      -archivePath build/$APP_SCHEME.xcarchive \
                      clean archive CODE_SIGNING_ALLOWED=YES
           
-          # Экспортируем IPA
           xcodebuild -exportArchive \
                      -archivePath build/$APP_SCHEME.xcarchive \
                      -exportOptionsPlist ExportOptions.plist \
