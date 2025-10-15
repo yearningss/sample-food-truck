@@ -4,7 +4,7 @@ workflows:
     max_build_duration: 60
     environment:
       vars:
-        APP_SCHEME: FoodTruckSimple
+        APP_SCHEME: "Food Truck"
         PROJECT_PATH: FoodTruck.xcodeproj
         TEAM_ID: 7AP9L8RUAG
       xcode: latest
